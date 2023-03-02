@@ -2,5 +2,10 @@
 // 我们给ajax提供的url
 $.ajaxPrefilter(function(options) {
     options.url = 'http://www.liulongbin.top:3007' + options.url
-    console.log(options.url);
+        //统一设置请求头
+    if (options.url.includes('/my')) {
+        options.headers = {
+            Authorization: localStorage.getItem('token') || ''
+        }
+    }
 })
