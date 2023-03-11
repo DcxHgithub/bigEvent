@@ -22,15 +22,14 @@ function getUserInfo() {
                 return layui.layer.msg('用户信息获取失败')
             }
             //渲染头像
-            layui.layer.msg('用户信息获取成功')
-            console.log(res.data);
+            // layui.layer.msg('用户信息获取成功')
             renderAvatar(res.data)
 
         },
         //服务器发送成功，失败，完成三个状态，完成是不管成功失败都会发生，通过完成判断token
         complete: function(res) {
             // 判断接收的状态，成功或失败
-            if (res.responeseJSON.state === 1 && res.responeseJSON.message == '身份认证失败！ ') {
+            if (res.responseJSON.status === 1 && res.responeseJSON.message == '身份认证失败！ ') {
                 //强制清空token
                 localStorage.removeItem('token')
                     //强制跳转到登录
